@@ -9,7 +9,11 @@ Gerenciamento de carrinho de compras
 Fila de espera para consultas, com informações sobre o tempo estimado e notificação sonora quando for a vez do usuário.
 Funcionalidades <h1 align="center"> Funcionalidades </h1>
 Registro e Login: Permite que o usuário crie uma conta e faça login para acessar o aplicativo.
+
 Mercado de Remédios: Exibe uma lista de medicamentos com imagens e preços. O usuário pode adicionar medicamentos ao carrinho.
+
 Carrinho de Compras: Permite que o usuário visualize os itens adicionados, incluindo a quantidade e o preço total dos produtos.
+
 Fila de Espera: O usuário pode entrar na fila para uma consulta. É exibido o tempo estimado de espera, e o usuário é notificado com um som ao chegar sua vez.
+
 Navegação Intuitiva: Navegação simples entre telas, com uma barra de navegação na parte inferior.
