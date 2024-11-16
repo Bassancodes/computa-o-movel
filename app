@@ -126,3 +126,35 @@ const ShopScreen = ({ addToCart, navigateTo }) => {
     </View>
   );
 };
+//Carrinho de Compras
+const CartScreen = ({ cart, navigateTo }) => {
+  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  return (
+    <View style={styles.page}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigateTo('Home')}>
+          <Text style={styles.backButton}>←</Text>
+        </TouchableOpacity>
+        <Text style={styles.subheading}>Carrinho de Remédios</Text>
+      </View>
+      {cart.length === 0 ? (
+        <Text>Seu carrinho está vazio.</Text>
+      ) : (
+        <View style={styles.cartList}>
+          {cart.map((item, index) => (
+            <View key={index} style={styles.cartItem}>
+              <Image source={{ uri: item.image }} style={styles.cartImageSmall} />
+              <View style={styles.cartItemDetails}>
+                <Text style={styles.cartItemName}>{item.name}</Text>
+                <Text style={styles.cartItemQuantity}>Quantidade: {item.quantity}</Text>
+                <Text style={styles.cartItemPrice}>Preço: R$ {(item.price * item.quantity).toFixed(2)}</Text>
+              </View>
+            </View>
+          ))}
+          <Text style={styles.totalPrice}>Total: R$ {totalPrice.toFixed(2)}</Text>
+        </View>
+      )}
+    </View>
+  );
+};
