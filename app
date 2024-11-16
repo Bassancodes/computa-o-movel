@@ -79,3 +79,26 @@ const LoginScreen = ({ navigateTo, registeredUser, setIsLoggedIn }) => {
     </View>
   );
 };
+
+// Tela de Produtos 
+const ShopScreen = ({ addToCart, navigateTo }) => {
+  const medicines = [
+    {
+      id: '1',
+      name: 'Paracetamol',
+      image: 'https://cdn1.staticpanvel.com.br/produtos/15/156550-15.jpg?ims=424x',
+      price: 5.00,
+    },
+    {
+      id: '2',
+      name: 'Ibuprofeno',
+      image: 'https://santaluciadrogaria.vtexassets.com/arquivos/ids/155986/7898148295159.png?v=637637945204100000',
+      price: 7.50,
+    },
+    {
+      id: '3',
+      name: 'Amoxicilina',
+      image: 'https://maxxieconomica.com/storage/photos/1/Products/ean/7896004702223.jpg',
+      price: 12.00,
+    },
+  ];
