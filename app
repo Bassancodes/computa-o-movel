@@ -102,3 +102,27 @@ const ShopScreen = ({ addToCart, navigateTo }) => {
       price: 12.00,
     },
   ];
+  return (
+    <View style={styles.page}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigateTo('Home')}>
+          <Text style={styles.backButton}>←</Text>
+        </TouchableOpacity>
+        <Text style={styles.subheading}>Mercado de Remédios</Text>
+      </View>
+      <View style={styles.medicineList}>
+        {medicines.map((medicine) => (
+          <View key={medicine.id} style={styles.medicineItem}>
+            <Image
+              source={{ uri: medicine.image }}
+              style={styles.medicineImage}
+            />
+            <Text style={styles.medicineName}>{medicine.name}</Text>
+            <Text style={styles.medicinePrice}>Preço: R$ {medicine.price.toFixed(2)}</Text>
+            <Button title="Comprar" onPress={() => addToCart(medicine)} color="#3498db" />
+          </View>
+        ))}
+      </View>
+    </View>
+  );
+};
