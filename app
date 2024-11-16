@@ -158,3 +158,74 @@ const CartScreen = ({ cart, navigateTo }) => {
     </View>
   );
 };
+
+const QueueScreen = ({ navigateTo }) => {
+  const [inQueue, setInQueue] = useState(false);
+  const [queuePosition, setQueuePosition] = useState(null);
+  const [waitingTime, setWaitingTime] = useState(null);
+  const [timeLeft, setTimeLeft] = useState(null);
+  const [message, setMessage] = useState("");
+  const [sound, setSound] = useState();
+
+  const enterQueue = () => {
+    const position = Math.floor(Math.random() * 100) + 1;
+    const time = Math.floor(Math.random() * 10) + 5;
+
+    setQueuePosition(position);
+    setWaitingTime(time);
+    setTimeLeft(time);
+    setInQueue(true);
+    setMessage(`Você está na posição ${position} da fila. Tempo estimado: ${time} segundos.`);
+  };
+
+  useEffect(() => {
+    if (inQueue && timeLeft > 0) {
+      const timer = setInterval(() => {
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    } else if (inQueue && timeLeft === 0) {
+      playSound();
+      setMessage(`Sua vez chegou! Por favor, dirija-se à sala ${Math.floor(Math.random() * 10) + 1} para consulta com o Dra. Giovanna Momozi Garcia.`);
+      setInQueue(false);
+    }
+  }, [inQueue, timeLeft]);
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require('./assets/car-warning-sound-2-189737.mp3') // Certifique-se de que o arquivo está na pasta 'assets'
+    );
+    setSound(sound);
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
+  return (
+    <View style={styles.page}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigateTo('Home')}>
+          <Text style={styles.backButton}>←</Text>
+        </TouchableOpacity>
+        <Text style={styles.subheading}>Fila de Espera</Text>
+      </View>
+      <View style={styles.queueContent}>
+        {inQueue ? (
+          <Text>{message}{'\n'}Tempo restante: {timeLeft} segundos</Text>
+        ) : (
+          <>
+            <Text>{message || "Clique em 'Entrar na Fila' para iniciar o processo."}</Text>
+            <Button title="Entrar na Fila" onPress={enterQueue} color="#3498db" />
+          </>
+        )}
+      </View>
+    </View>
+  );
+};
