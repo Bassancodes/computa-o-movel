@@ -23,3 +23,59 @@ const RegisterScreen = ({ navigateTo, setRegisteredUser }) => {
       Alert.alert('Por favor, preencha todos os campos.');
     }
   };
+  return (
+    <View style={styles.page}>
+      <Text style={styles.heading}>Registro</Text>
+      <TextInput
+        placeholder="Nome de Usuário"
+        value={username}
+        onChangeText={setUsername}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Senha"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+        style={styles.input}
+      />
+      <Button title="Registrar" onPress={handleRegister} color="#3498db" />
+    </View>
+  );
+};
+
+// Login
+const LoginScreen = ({ navigateTo, registeredUser, setIsLoggedIn }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = () => {
+    if (registeredUser && username === registeredUser.username && password === registeredUser.password) {
+      Alert.alert('Login bem-sucedido!');
+      setIsLoggedIn(true);
+      navigateTo('Home');
+    } else {
+      Alert.alert('Usuário ou senha incorretos.');
+    }
+  };
+
+  return (
+    <View style={styles.page}>
+      <Text style={styles.heading}>Login</Text>
+      <TextInput
+        placeholder="Nome de Usuário"
+        value={username}
+        onChangeText={setUsername}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Senha"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+        style={styles.input}
+      />
+      <Button title="Entrar" onPress={handleLogin} color="#3498db" />
+    </View>
+  );
+};
