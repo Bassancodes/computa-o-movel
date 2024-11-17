@@ -229,3 +229,74 @@ const QueueScreen = ({ navigateTo }) => {
     </View>
   );
 };
+// carrinho de compras
+const App = () => {
+  const [activePage, setActivePage] = useState('Home');
+  const [registeredUser, setRegisteredUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [cart, setCart] = useState([]);
+
+  const navigateTo = (page) => setActivePage(page);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    navigateTo('Login');
+  };
+
+  const addToCart = (medicine) => {
+    const existingItem = cart.find((item) => item.id === medicine.id);
+
+    if (existingItem) {
+      setCart(
+        cart.map((item) =>
+          item.id === medicine.id ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
+    } else {
+      setCart([...cart, { ...medicine, quantity: 1 }]);
+    }
+    Alert.alert(`${medicine.name} adicionado ao carrinho!`);
+  };
+
+  const renderPage = () => {
+    switch (activePage) {
+      case 'Home':
+        return <HomeScreen />;
+      case 'Register':
+        return <RegisterScreen navigateTo={navigateTo} setRegisteredUser={setRegisteredUser} />;
+      case 'Login':
+        return <LoginScreen navigateTo={navigateTo} registeredUser={registeredUser} setIsLoggedIn={setIsLoggedIn} />;
+      case 'Shop':
+        return <ShopScreen addToCart={addToCart} navigateTo={navigateTo} />;
+      case 'Cart':
+        return <CartScreen cart={cart} navigateTo={navigateTo} />;
+      case 'Queue':
+        return <QueueScreen navigateTo={navigateTo} />;
+      default:
+        return <HomeScreen />;
+    }
+  };
+
+  return (
+    <View style={styles.app}>
+      <View style={styles.content}>
+        {renderPage()}
+      </View>
+      <View style={styles.navbar}>
+        {isLoggedIn ? (
+          <>
+            <Button title="Sair" onPress={handleLogout} />
+            <Button title="Shop" onPress={() => navigateTo('Shop')} />
+            <Button title="Carrinho" onPress={() => navigateTo('Cart')} />
+            <Button title="Fila" onPress={() => navigateTo('Queue')} />
+          </>
+        ) : (
+          <>
+            <Button title="Login" onPress={() => navigateTo('Login')} />
+            <Button title="Registrar" onPress={() => navigateTo('Register')} />
+          </>
+        )}
+      </View>
+    </View>
+  );
+};
