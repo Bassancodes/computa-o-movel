@@ -300,3 +300,124 @@ const App = () => {
     </View>
   );
 };
+
+// Estilos
+const styles = StyleSheet.create({
+  app: {
+    flex: 1,
+    backgroundColor: '#f5f8fa',
+    fontFamily: 'Arial',
+  },
+  content: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  page: {
+    textAlign: 'center',
+    padding: 20,
+    borderRadius: 8,
+    backgroundColor: '#ffffff',
+    maxWidth: 600,
+    width: '100%',
+  },
+  heading: {
+    color: '#2c3e50',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  subheading: {
+    color: '#34495e',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  backButton: {
+    fontSize: 24,
+    color: '#3498db',
+  },
+  input: {
+    width: '100%',
+    marginVertical: 10,
+    padding: 10,
+    fontSize: 16,
+    borderColor: '#bdc3c7',
+    borderWidth: 1,
+    borderRadius: 4,
+  },
+  medicineList: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  medicineItem: {
+    alignItems: 'center',
+    padding: 15,
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 8,
+    width: '30%',
+    margin: 5,
+  },
+  medicineImage: {
+    width: 70,
+    height: 100,
+    marginBottom: 10,
+  },
+  medicineName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#34495e',
+  },
+  medicinePrice: {
+    color: '#555',
+    fontSize: 14,
+  },
+  cartList: {
+    paddingTop: 20,
+  },
+  cartItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  cartImageSmall: {
+    width: 40,
+    height: 60,
+    borderRadius: 8,
+  },
+  cartItemDetails: {
+    marginLeft: 10,
+  },
+  cartItemName: {
+    fontWeight: 'bold',
+    color: '#2c3e50',
+    fontSize: 14,
+  },
+  totalPrice: {
+    marginTop: 20,
+    fontWeight: 'bold',
+    fontSize: 18,
+    color: '#34495e',
+  },
+  queueContent: {
+    fontSize: 18,
+    color: '#2c3e50',
+    marginTop: 20,
+  },
+  navbar: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 10,
+    backgroundColor: '#2c3e50',
+  },
+});
+
+export default App;
